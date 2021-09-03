@@ -1,5 +1,6 @@
-#parent portal import pickle 
-f=open(r'C:\Users\Sachin\Desktop\p.portal.txt','rb') 
+#parent portal
+import pickle 
+f=open('p.portal.txt','rb') 
 i=input('Do you want to enter student details(y/n):') 
 count=0 
 if i=='y': 
