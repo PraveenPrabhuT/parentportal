@@ -1,0 +1,121 @@
+import pickle
+import os
+import time
+def accept():
+    rollno = int(input('Enter roll number: '))
+    name = input('Enter name: ')
+    eng=int(input('Enter english marks:'))
+    math=int(input('Enter maths marks:'))
+    phy=int(input('Enter physics marks:'))
+    chem=int(input('Enter chemistry marks:'))
+    cs=int(input('Enter cs marks:'))
+    print()
+
+    global std
+    std={}
+    std['rollno']=rollno
+    std['name']=name
+    std['english']=eng
+    std['maths']=math
+    std['physics']=phy
+    std['chemistry']=chem
+    std['computer science']=cs
+    return std
+
+def display():
+    print(std['rollno'],std['name'],std['english'],std['maths'],std['physics'],std['chemistry'],std['computer science'])
+
+def write():
+    f=open('data.txt','ab')
+    while(True):
+        pickle.dump(accept(),f)
+        enter=input('Do you want to enter more records(y/n):')
+        enter=enter.lower()
+        if enter=='n' :
+            break
+    f.close()
+def read():
+    f=open('data.txt','ab')
+    return
+    while True:
+        try:
+            student=pickle.load(f)
+            print(student)
+        except EOFError:
+            break
+    f.close()
+def search():
+    try:
+        f=open('data.txt','rb')
+    except FileNotFoundError:
+        print('Not found')
+        return
+    found = False
+    rollno=int(input('Enter the rollno you want to find:'))
+    while True:
+        try:
+            std=pickle.load(f)
+            if std['rollno']==rollno:
+                display()
+                found = True
+                break
+        except EOFError:
+            break
+        else:
+            print('Couldnt find record')
+        f.close()
+def delete():
+    try:
+        f=open('std.dat','rb')
+    except FileNotFoundError:
+        print('No record found for deleting:')
+        return
+    g=open('temp.dat','wb')
+    found= False
+    rollno = int(input('Enter roll number:'))
+    while True:
+        try:
+            std = pickle.load(g)
+            if std['rollno']==rollno:
+                display(std)
+                found=True
+                break
+            else:
+                pickle.dump(std,g)
+        except EOFError:
+            break
+            
+    if found == False:
+        print('Not to be found')
+        print()
+    else:
+        print('Success! Record deleted')
+
+    f.close()
+    g.close()
+    os.remove('std.dat')
+    os.rename('temp.dat','std.dat')
+accept()
+print(''' Select the Menu
+1. To enter records into the database
+2. To show records of the database
+3. To write new records onto the database
+4. To read records of the database
+5. To search for records
+6. To delete records''')
+value=int(input('Enter the menu item number:'))
+if value==1:
+    accept()
+elif value==2:
+    display()
+elif value==3:
+    write()
+elif value==4:
+    read()
+elif value==5:
+    search()
+elif value==6:
+    delete()
+    
+    
+
