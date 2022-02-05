@@ -25,7 +25,7 @@ def login():
 # Fee Details Function
 def fee_details():
     fee_detail=mysql.connector.connect(host="localhost", user="root", passwd="root",database="feeDetails")
-    mycursor=mydb.cursor()
+    mycursor=fee_detail.cursor()
     rollNo=int(input("Enter roll number"))
     query="SELECT * FROM fees WHERE roll = {}".format(rollNo)
     mycursor.execute(query)
@@ -41,9 +41,9 @@ def fee_receipt():
     f=open('fee_receipt.txt','w')
     rollNo=int(input('Enter roll number:'))
     fee_detail=mysql.connector.connect(host="localhost", user="root", passwd="root",database="feeDetails")
-    mycursor=mydb.cursor()
+    mycursor=fee_detail.cursor()
     query1="SELECT * FROM fees WHERE roll = {}".format(rollNo)
-    mycursor.execute(query)
+    mycursor.execute(query1)
     detail=mycursor.fetchall()
     if len(detail)==0:
         print("Roll No not found")
