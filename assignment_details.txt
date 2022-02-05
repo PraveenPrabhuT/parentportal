@@ -1,0 +1,4 @@
+Computer Project - Write a program utilising File Handling and/or MySQL in Python to solve a real life problem
+English  Project - ALS Project - Refer to Google Classroom for more details
+Math     Project - Application of integrals - Activity 7.2 Pg 178
+Physics  Project - Ray optics - Activity 11.4 Pg 278
