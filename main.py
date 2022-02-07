@@ -36,7 +36,6 @@ def fee_details():
         print("Roll No not found")
     else:
         print(detail)
-        print(type(detail))
     mycursor.close()
 
 # Fee Receipt Generator Function
