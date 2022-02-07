@@ -36,6 +36,7 @@ def fee_details():
         print("Roll No not found")
     else:
         print(detail)
+        print(type(detail))
     mycursor.close()
 
 # Fee Receipt Generator Function
@@ -50,12 +51,13 @@ def fee_receipt():
     if len(detail)==0:
         print("Roll No not found")
     else:
+        detailTuple=tuple(detail[0])
         f.write("         ABC INTERNATIONAL SCHOOL \n")
         f.write("             FEE RECEIPT \n\n")
-        line1=("Name         :  " + detail[1] + "\n")
-        line2=("Class        :  " + detail[2] + "\n")
-        line3=("Received     :  " + detail[3] + "\n")
-        line4=("Payment mode :  " + detail[4] + "\n")
+        line1=("Name         :  " + str(detailTuple[1]) + "\n")
+        line2=("Class        :  " + str(detailTuple[2]) + "\n")
+        line3=("Received     :  " + str(detailTuple[3]) + "\n")
+        line4=("Payment mode :  " + str(detailTuple[4]) + "\n")
         f.write(line1)
         f.write(line2)
         f.write(line3)
