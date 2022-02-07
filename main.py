@@ -1,6 +1,8 @@
 # Importing Necessary Modules
 import mysql.connector
 import csv
+import stdiomask
+import getpass
 from prettytable import PrettyTable
 
 # Login Function
@@ -9,7 +11,7 @@ user='default'
 def login():
     global user
     user = input("Enter Username: ")
-    password= input("Enter Password: ")
+    password= stdiomask.getpass(prompt="Enter Password: ")
     users = {"praveen":"password1", "sachin":"password2","aravind":"password3"}
     keyz=users.keys()
     if user in keyz:
