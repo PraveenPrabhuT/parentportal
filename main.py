@@ -31,10 +31,16 @@ def sqlLogin():
     password=stdiomask.getpass(prompt="Enter Password: ")
     login_details=mysql.connector.connect(host="localhost",user="root",passwd="root",database="loginDetails")
     mycursor=login_details.cursor()
-    query="SELECT password FROM login WHERE userID = {}".format(user)
+    query="SELECT password FROM login WHERE userID = \'"+user+"\';"
+    print(query)
     mycursor.execute(query)
     detail=mycursor.fetchall()
-    CorrectPassword=tuple(detail)
+    print(type(detail))
+    CorrectPassword=str(detail[0])
+    print(CorrectPassword)
+    CorrectPassword=CorrectPassword[2:-3]
+    print(CorrectPassword)
+    print(type(CorrectPassword))
     if len(detail)==0:
         print("User not found")
     else:
