@@ -201,7 +201,7 @@ def menu():
         print("Please enter between 1 to 9")
 
 while access==0:
-    Login()
+    sqlLogin()
 
 stop=0
 while stop==0:
