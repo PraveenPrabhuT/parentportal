@@ -8,23 +8,6 @@ from prettytable import PrettyTable
 # Login Function
 access = 0
 user = 'default'
-def login():
-    global user
-    user = input("Enter Username: ")
-    password = stdiomask.getpass(prompt="Enter Password: ")
-    users = {"praveen":"password1", "sachin":"password2","aravind":"password3"}
-    keyz = users.keys()
-    if user in keyz:
-        if users[user] == password:
-            global access 
-            access = 1
-            print("You have logged in successfully")
-        else:
-            print("Enter correct password")
-    else:
-        print("User not found") 
-
-#Login Function SQL Version
 def sqlLogin():
     global user
     user = input ("Enter Username: ")
@@ -32,7 +15,6 @@ def sqlLogin():
     login_details = mysql.connector.connect(host = "localhost",user = "root",passwd = "root",database = "loginDetails")
     mycursor = login_details.cursor()
     query = "SELECT password FROM login WHERE userID = \'"+user+"\';"
-    print(query)
     mycursor.execute(query)
     detail = mycursor.fetchall()
     CorrectPassword = str(detail[0])
@@ -135,11 +117,12 @@ def attendance():
     f = open('attendance.csv','r')
     attendance = csv.reader(f)
     table = PrettyTable()
-    table_title = 'Attendance'+' Name :'+str(user)
+    table_title = 'Attendance'
     table.title = table_title
-    table.field_names = (['Mon','Tue','Wed','Thu','Fri','Sat'])
+    table.field_names = (['Name','Mon','Tue','Wed','Thu','Fri','Sat'])
     for row in attendance:
-        table.add_row(row)
+        if row[0]==user:
+            table.add_row(row)
     table.align = "c"
     print(table)
     f.close()
