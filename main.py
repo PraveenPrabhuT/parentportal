@@ -35,12 +35,8 @@ def sqlLogin():
     print(query)
     mycursor.execute(query)
     detail=mycursor.fetchall()
-    print(type(detail))
     CorrectPassword=str(detail[0])
-    print(CorrectPassword)
     CorrectPassword=CorrectPassword[2:-3]
-    print(CorrectPassword)
-    print(type(CorrectPassword))
     if len(detail)==0:
         print("User not found")
     else:
