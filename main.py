@@ -24,6 +24,26 @@ def login():
     else:
         print("User not found") 
 
+#Login Function SQL Version
+def sqlLogin():
+    global user
+    user = input ("Enter Username: ")
+    password=stdiomask.getpass(prompt="Enter Password: ")
+    login_details=mysql.connector.connect(host="localhost",user="root",passwd="root",database="loginDetails")
+    mycursor=login_details.cursor()
+    query="SELECT password FROM login WHERE userID = {}".format(user)
+    mycursor.execute(query)
+    detail=mycursor.fetchall()
+    CorrectPassword=tuple(detail)
+    if len(detail)==0:
+        print("User not found")
+    else:
+        if password==CorrectPassword:
+            print("You have logged in successfully")
+            global access
+            access=1
+        else:
+            print("Enter correct password")
 # Fee Details Function
 def fee_details():
     fee_detail=mysql.connector.connect(host="localhost", user="root", passwd="root",database="feeDetails")
@@ -175,7 +195,7 @@ def menu():
         print("Please enter between 1 to 9")
 
 while access==0:
-    login()
+    sqlLogin()
 
 stop=0
 while stop==0:
