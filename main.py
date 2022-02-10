@@ -90,9 +90,13 @@ def feedback():
 #Class Diary Function
 def class_diary():
     f = open('class_diary.txt','r')
-    diary = f.read()
+    diary = f.readlines()
     print("\t\t\tCLASS DIARY")
-    print(diary)
+    for i in diary:
+        diaryContent = i.split("|")
+        recepient = diaryContent[0].strip()
+        if recepient in ['General',user]:
+            print(diaryContent[1])
     f.close()
 
 #Assignment Details Function
@@ -121,7 +125,7 @@ def attendance():
     table.title = table_title
     table.field_names = (['Name','Mon','Tue','Wed','Thu','Fri','Sat'])
     for row in attendance:
-        if row[0]==user:
+        if row[0] == user:
             table.add_row(row)
     table.align = "c"
     print(table)
