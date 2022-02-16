@@ -43,11 +43,12 @@ def fee_details():
     if len(feeDetails) == 0:
         print("Roll No not found")
     else:
-        print("Name         :",feeDetails[1])
-        print("Class        :",feeDetails[2])
-        print("Amount Paid  :",feeDetails[3])
-        print("Payment Mode :",feeDetails[4])
-        print("Due left     :",50000-feeDetails[3])
+        feeDetailsTuple=feeDetails[0]
+        print("Name         :",feeDetailsTuple[1])
+        print("Class        :",feeDetailsTuple[2])
+        print("Amount Paid  :",feeDetailsTuple[3])
+        print("Payment Mode :",feeDetailsTuple[4])
+        print("Due left     :",50000-feeDetailsTuple[3])
     mycursor.close()
 
 # Fee Receipt Generator Function
@@ -64,14 +65,14 @@ def fee_receipt():
         print("Roll No not found")
     else:
         detailTuple = tuple(feeDetails[0])
-        f.write("         ABC INTERNATIONAL SCHOOL \n")
-        f.write("             FEE RECEIPT \n\n")
+        file.write("         ABC INTERNATIONAL SCHOOL \n")
+        file.write("             FEE RECEIPT \n\n")
         line1 = ("Name         :  " + str(detailTuple[1]) + "\n")
         line2 = ("Class        :  " + str(detailTuple[2]) + "\n")
         line3 = ("Received     :  " + str(detailTuple[3]) + "\n")
         line4 = ("Payment mode :  " + str(detailTuple[4]) + "\n")
         due_left = 50000 - detailTuple[3]
-        line5 = ("Due left     :  " + due_left] + "\n")
+        line5 = ("Due left     :  " + str( due_left) + "\n")
         file.write(line1)
         file.write(line2)
         file.write(line3)
