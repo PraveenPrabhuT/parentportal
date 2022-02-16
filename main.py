@@ -99,7 +99,7 @@ def feedback():
     userFeedback = input('Kindly give your valuable feedback:')
     global user
     userFeedback = userFeedback+' given by '+str(user)+'\n'
-    file.write(s)
+    file.write(userFeedback)
     file.close()
 
 #Class Diary Function
