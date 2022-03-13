@@ -201,6 +201,7 @@ def menu():
     elif choice == 0:
         global stop
         stop = 1
+        print("Thank you for using Parent Portal")
     else:
         print("Please enter a number between 1 to 9")
 
